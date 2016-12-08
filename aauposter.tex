@@ -1,0 +1,444 @@
+%  The AAU Poster Theme.
+%  2013-05-08 v. 1.1.0
+%  Copyright 2013 by Jesper Kjær Nielsen <jkn@es.aau.dk>
+%
+%  This is free software: you can redistribute it and/or modify
+%  it under the terms of the GNU General Public License as published by
+%  the Free Software Foundation, either version 3 of the License, or
+%  (at your option) any later version.
+%
+%  This is distributed in the hope that it will be useful,
+%  but WITHOUT ANY WARRANTY; without even the implied warranty of
+%  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%  GNU General Public License for more details.
+%
+%  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
+\documentclass[a0paper,portrait]{baposter}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Language, Encoding and Fonts
+% http://en.wikibooks.org/wiki/LaTeX/Internationalization
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Select encoding of your inputs. Depends on
+% your operating system and its default input
+% encoding. Typically, you should use
+%   Linux  : utf8 (most modern Linux distributions)
+%            latin1 
+%   Windows: ansinew
+%            latin1 (works in most cases)
+%   Mac    : applemac
+% Notice that you can manually change the input
+% encoding of your files by selecting "save as"
+% an select the desired input encoding. 
+\usepackage[utf8]{inputenc}
+% Make latex understand and use the typographic
+% rules of the language used in the document.
+\usepackage[english]{babel}
+% Use the vector font Latin Modern which is going
+% to be the default font in latex in the future.
+\usepackage{helvet}
+% Change the default font family from roman to sans serif
+\renewcommand{\familydefault}{\sfdefault} % for text
+\usepackage[helvet]{sfmath} % for math
+% Choose the font encoding
+\usepackage[T1]{fontenc}
+% Code highlight
+\usepackage{listings}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Graphics and Tables
+% http://en.wikibooks.org/wiki/LaTeX/Importing_Graphics
+% http://en.wikibooks.org/wiki/LaTeX/Tables
+% http://pgfplots.sourceforge.net/
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% You cannot use floats in the baposter theme.
+% We therefore load the caption package which provides
+% the command \captionof
+% Set up how figure and table captions are displayed
+\usepackage{caption}
+\captionsetup{
+  font=small,% set font size to footnotesize
+  labelfont=bf % bold label (e.g., Figure 3.2) font
+}
+% Make the standard latex tables look so much better
+\usepackage{array,booktabs}
+% For creating beautiful plots
+\usepackage{pgfplots}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Mathematics
+% http://en.wikibooks.org/wiki/LaTeX/Mathematics
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Defines new environments such as equation,
+% align and split 
+\usepackage{amsmath}
+% Adds new math symbols
+\usepackage{amssymb}
+% For codes
+\usepackage{listing}
+\lstdefinelanguage{json}{
+    basicstyle=\normalfont\ttfamily,
+    numbers=left,
+    numberstyle=\scriptsize,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {[}{{{\color{delim}{[}}}}{1}
+      {]}{{{\color{delim}{]}}}}{1},
+}
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  xleftmargin=\parindent,
+  language=Python,
+  showstringspaces=false,
+  basicstyle=\linespread{0.8}\scriptsize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{purple!40!black},
+  identifierstyle=\color{blue},
+  stringstyle=\color{orange},
+  tabsize=2
+}
+
+\lstset{escapechar=@,style=customc}
+\usepackage{DejaVuSansMono}
+%% Another possibility is
+%% \usepackage{dejavu}
+%% which loads the DejaVu Serif and DejaVu Sans fonts as well
+% \renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+\usepackage[T1]{fontenc}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colours
+% http://en.wikibooks.org/wiki/LaTeX/Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\selectcolormodel{RGB}
+% define the three aau colors
+\definecolor{aaublue1}{HTML}{990000} % dark blue
+\definecolor{aaublue2}{HTML}{F3F0E9} % light blue
+\definecolor{aaublue3}{HTML}{D4D4D4} % lighter blue
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Lists
+% http://en.wikibooks.org/wiki/LaTeX/List_Structures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Easier configuration of lists
+\usepackage{enumitem}
+%configure itemize
+\setlist{%
+  topsep=0pt,% set space before and after list
+  noitemsep,% remove space between items
+  labelindent=\parindent,% set the label indentation to the paragraph indentation
+  leftmargin=*,% remove the left margin
+  font=\color{aaublue1}\normalfont, %set the colour of all bullets, numbers and descriptions to aaublue1
+}
+% use set<itemize,enumerate,description> if you have an older latex distribution
+\setitemize[1]{label={\raise1.25pt\hbox{$\blacktriangleright$}}}
+\setitemize[2]{label={\scriptsize\raise1.25pt\hbox{$\blacktriangleright$}}}
+\setitemize[3]{label={\raise1.25pt\hbox{$\star$}}}
+\setitemize[4]{label={-}}
+%\setenumerate[1]{label={\theenumi.}}
+%\setenumerate[2]{label={(\theenumii)}}
+%\setenumerate[3]{label={\theenumiii.}}
+%\setenumerate[4]{label={\theenumiv.}}
+%\setdescription{font=\color{aaublue1}\normalfont\bfseries}
+
+% use setlist[<itemize,enumerate,description>,<level>] if you have a newer latex distribution
+%\setlist[itemize,1]{label={\raise1.25pt\hbox{$\blacktriangleright$}}}
+%\setlist[itemize,2]{label={\scriptsize\raise1.25pt\hbox{$\blacktriangleright$}}}
+%\setlist[itemize,3]{label={\raise1.25pt\hbox{$\star$}}}
+%\setlist[itemize,4]{label={-}}
+%\setlist[enumerate,1]{label={\theenumi.}}
+%\setlist[enumerate,2]{label={(\theenumii)}}
+%\setlist[enumerate,3]{label={\theenumiii.}}
+%\setlist[enumerate,4]{label={\theenumiv.}}
+%\setlist[description]{font=\color{aaublue1}\normalfont\bfseries}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% change/remove some names
+\addto{\captionsenglish}{
+  %remove the title of the bibliograhpy
+  \renewcommand{\refname}{\vspace{-0.7em}}
+  %change Figure to Fig. in figure captions
+  \renewcommand{\figurename}{Fig.}
+}
+% create links
+\usepackage{url}
+%note that the hyperref package is currently incompatible with the baposter class
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\alert}[1]{{\color{aaublue1}#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Document Start 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some changes that cannot be made in the preamble
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% set the background of the poster
+\background{
+  \begin{tikzpicture}[remember picture,overlay]%
+    %the poster background color
+    \fill[fill=aaublue3] (current page.north west) rectangle (current page.south east);
+    %the header
+    \fill [fill=aaublue1] (current page.north west) rectangle ([yshift=-\headerheight] current page.north east);
+  \end{tikzpicture}
+}
+% if you want to reduce the space before and after equations, use and adjust
+% the following lines
+%\addtolength{\abovedisplayskip}{-2mm}
+%\addtolength{\belowdisplayskip}{-2mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% General poster setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{poster}{
+  %general options for the poster
+  grid=false,
+  columns=5,
+%  colspacing=4.2mm,
+  headerheight=0.1\textheight,
+  background=user,
+%  bgColorOne=red!42, %is used when background != user and none
+%  bgColortwo=green!42, %is used when background is shaded
+  eyecatcher=true,
+  %posterbox options
+  headerborder=closed,
+  borderColor=aaublue1,
+  headershape=rectangle,
+  headershade=plain,
+  headerColorOne=aaublue1,
+%  headerColortwo=yellow!42, %is used when the header background is shaded
+  textborder=rectangle,
+  boxshade=plain,
+  boxColorOne=white,
+%  boxColorTwo=cyan!42,%is used when the text background is shaded
+  headerFontColor=white,
+  headerfont=\Large\sf\bf,
+  linewidth=1pt
+}
+%the Eye Catcher (the logo on the left)
+{
+  %this can be commented out or replaced by a company/department logo
+  \includegraphics[height=0.75\headerheight]{CMU_white}
+}
+%the poster title
+{\color{white}\bf
+  ThingKit: a context-awareness IoT programming environment
+}
+%the author(s)
+{\color{white}\small
+  \vspace{1em} Junrui (Jackie) Yang 
+  jackieyang51@gmail.com\\
+  (Mentor: Adrian de Freitas  Advisor: Prof. Anind K. Dey)\\
+  Peking University - Carnegie Mellon University  Summer Program
+}
+%the logo (the logo on the right)
+{
+  %this can be commented out or replaced by a company/department logo
+  \includegraphics[height=0.75\headerheight]{HCII_white}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the actual content of the poster begins here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{posterbox}[name=back,column=0,span=2,row=0]{Background and Challenge}
+\begin{itemize}
+  \item IoT is involved with ...
+    \begin{description}
+      \item[Complexity] IoT devices is highly heterogeneous, each kind of devices has its own capabilities.
+      \item[Scalability] The number of IoT devices is booming.
+      \item[Duplicity] IoT devices need to face the trade off of accuracy and usability and usually involved many duplicate code segments for data processing.
+    \end{description}
+  \item However IoT middle-ware is ...
+    \begin{itemize}
+      \item unique for each device in the way of communication, other programs/devices can hardly share their information.
+      \item being focused on the management side instead of the user side.
+    \end{itemize}
+  \item Luckily ThingKit is ...
+    \begin{description}
+      \item[Context-awaring] Programs/devices know not only what is around but also what they can do.
+      \item[Capabilities-oriented] ThingKit focuses on what the \texttt{Thing} can do instead of what is the identity of \texttt{Thing}.
+      \item[Multifunctional] \texttt{Thing} can have more than traditional functions. e.g. A microphone can also sense if there is people around according to sound.
+    \end{description}
+\end{itemize}
+\end{posterbox}
+
+\begin{posterbox}[name=intro,column=0,below=back,span=2]{Introduction}
+\begin{itemize}
+  \item ThingKit is a Python programming library to dynamically acquire IoT devices and services with context awareness.
+  \item Everything is absracted as a \texttt{Thing}. Method is dynamically discovered and bound to the instance.
+  \item Bluetooth is used to provide context information so that each device(program) can know the IoT context.
+  \item Futher abstraction is achieved by using virutal devices and virtual functions.
+\end{itemize}
+\end{posterbox}
+
+\begin{posterbox}[name=solution,column=0,span=2,below=intro]{Solution}
+\begin{itemize}
+  \item Technology based on
+  \begin{description}
+    \item[MQTT] MQTT is an IoT chat room, where ThingKit gathers capabilities and executes functions.
+    \item[Bluetooth] Using Bluetooth sensing and broadcasting unique identifier to locate the communication channel
+  \end{description}
+  \item Features and Implementations
+  \begin {description}
+    \item[Discover] \texttt{Thing}s around
+    \begin{enumerate}
+      \item Bluetooth gathers device ID
+      \item ThingKit using ID to establish a connection to the device specific channel and gather capabilities.
+    \end{enumerate}
+    \item[Gather] capabilities
+    \begin{enumerate}
+      \item ThingKit establishes a query about capabilities, and subscribes to all result.
+      \item Other ThingKit providing one or more functionality to this device respond to the query.
+      \item ThingKit capture the response and dynamically added it to the instance.
+      \item ThingKit providing new functionality will broadcast their new functionality no matter whether there is a query so that other ThingKit already subscribed to this \texttt{Thing} can also get the latest profile
+      \item ThingKit will re-request capabilities to delete the expired capabilities.
+    \end{enumerate}
+    \item[Select] according to capabilities
+    \begin{enumerate}
+      \item ThingKit has a list of nearby devices.
+      \item ThingKit looks through that list to find out if there is any device matches the type
+      \item ThingKit returns a special class \texttt{ThingsList}, which shares the common capabilities in that list, so that users can easily batch call function.
+    \end{enumerate}
+  \end {description}
+\end{itemize}
+\end{posterbox}
+
+\begin{posterbox}[name=proto,span=3,column=2,row=0]{Prototype}
+
+\begin{center}
+  \begin{minipage}{4cm}
+  \lstinputlisting[language=Python]{light.py}
+  \end{minipage}
+  \begin{minipage}{4cm}
+  \includegraphics[width=40mm]{light1}
+  \end{minipage}
+  \begin{minipage}{4cm}
+  \includegraphics[width=40mm]{light2}
+  \end{minipage}
+  \captionof{figure}{A simple application using ThingKit: Universal toggle}
+  \label{fig:light}
+\end{center}
+\begin{center}
+  \begin{minipage}{8cm}
+  \lstinputlisting[language=Python]{notify.py}
+  \end{minipage}
+  \begin{minipage}{4cm}
+  \includegraphics[width=40mm]{notify}
+  \end{minipage}
+  \captionof{figure}{A program adds notify functionality to nearby devices, and uses it to notify the user}
+  \label{fig:notify}
+\end{center}
+% \reflight
+% \includegraphics[width = 5cm]{light1}
+\end{posterbox}
+
+\begin{posterbox}[name=interface,span=2,column=2,below=proto]{Interface}
+\begin{center}
+  \includegraphics[width=60mm]{command}
+  \vspace*{-0.8cm}
+  \captionof{figure}{A running Python interactive interpreter with ThingKit}
+  \label{fig:command}
+\end{center}
+
+
+\end{posterbox}
+\newcommand{\nbox}{$\square$}
+\newcommand{\cbox}{$\text{\rlap{$\checkmark$}}\square$}
+\begin{posterbox}[name=progress,column=4,span=1,below=proto]{Progress}
+\begin{description}
+  \item[\cbox] Basic functionality
+    \begin{description}
+      \item[\cbox] Discovery devices
+      \item[\cbox] Gather capabilities
+      \item[\cbox] Select devices
+    \end{description}
+  \item[\nbox] Advanced functionality
+    \begin{description}
+      \item[\cbox] Virtual capabilities
+      \item[\cbox] Virtual devices
+      \item[\nbox] Global select
+    \end{description}
+  \item[\nbox] Portable
+    \begin{description}
+      \item[\cbox] Linux
+      \item[\nbox] OS X (currently impossible)
+      \item[\nbox] Android
+    \end{description}
+\end{description}
+\end{posterbox}
+
+\begin{posterbox}[name=side,column=2,span=3,below=interface]{Smart sign [Side project]}
+\begin{minipage}[l]{0.40\linewidth}
+  \begin{description}
+    \item[Background]
+      Facial recognition: a method to provide personalized service in public environment, which also requires protection from unauthorized data access.
+    \item[Solution]
+      Bluewave is a framework that allows device to opportunistically share their context within a confined range. Smart sign registers the face image shared in the context within its own recognition model along with their personal data (in this case, name). Once the smart sign recognizes the person, it can use the person's data to provide personalized service.
+  \end{description}
+\end{minipage}
+\hspace{0.5cm}
+\begin{minipage}[r]{0.45\linewidth}
+  \begin{center}
+    \lstinputlisting[language=Python]{face.js}
+    \captionof{figure}{A context profile used by smartsign}
+    \label{fig:face_json}
+  \end{center}
+  \begin{center}
+    \includegraphics[width=40mm]{face}
+    \captionof{figure}{A woman in front of a smart sign}
+    \label{fig:face}
+  \end{center}
+\end{minipage}
+\end{posterbox}
+
+% \begin{posterbox}
+
+
+
+% \begin{posterbox}[name=refs,column=2,below=feedback,above=bottom]{References}
+% % In the last box, you will usually have a list of references
+% % The bibliography automatically adds the title "References", but
+% % this have been removed in the preamble
+
+% % % use either ......
+% % \bibliographystyle{plain}
+% % \begin{thebibliography}{1}% Simple bibliography with widest label of 1
+% % \itemsep=-0.01em% Save space between the separation
+% % \setlength{\baselineskip}{0.4em}% Save space with longer lines
+% % \bibitem{baposter} Brian Amberg: \emph{LaTeX Poster Template}, \url{http://www.brian-amberg.de/uni/poster/} 
+% % \bibitem{pgfplots} Christian Feuersänger: \emph{PGFPlots - A LaTeX Package to create normal/logarithmic plots in two and three dimensions}, \url{http://pgfplots.sourceforge.net/} 
+% % \bibitem{jknaau} Jesper Kjær Nielsen: \emph{Official AAU Beamer Theme, Poster Theme, and Report Template}, \url{http://kom.aau.dk/~jkn/latex/latex.php}
+% % \bibitem{jknsqrt-1} Jesper Kjær Nielsen: \emph{Official AAU Beamer Theme, Poster Theme, and Report Template}, \url{http://sqrt-1.dk/latex/latex.php}
+% % \end{thebibliography}
+
+
+% % % ...... or
+% % %  \bibliographystyle{IEEEbib}
+% % %  \bibliography{IEEEabrv,mybib,mybib2} 
+% \end{posterbox}
+
+\end{poster}
+\end{document}
